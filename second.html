@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Surprise!</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #6a0dad, #1b0030);
+      color: white;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      position: relative;
+      transition: background 1s ease;
+    }
+
+    /* Sparkles container for first message */
+    #sparkles-container-1,
+    #sparkles-container-2 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 4; /* Behind messages */
+      filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
+      /* subtle glow */
+    }
+
+    #sparkles-container-2 {
+      display: none; /* Hidden initially */
+      filter: drop-shadow(0 0 6px rgba(102,204,255,0.8));
+    }
+
+    /* Sparkle dots */
+    .sparkle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      animation-name: sparkleFade;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      user-select: none;
+      filter: blur(0.8px);
+      /* subtle blur for softness */
+    }
+
+    /* White sparkles for first message */
+    #sparkles-container-1 .sparkle {
+      background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0) 70%);
+      box-shadow:
+        0 0 6px 2px rgba(255,255,255,0.8),
+        0 0 12px 4px rgba(218,112,214,0.6);
+    }
+
+    /* Blue sparkles for second message */
+    #sparkles-container-2 .sparkle {
+      background: radial-gradient(circle, #66ccff 0%, rgba(102,204,255,0) 70%);
+      box-shadow:
+        0 0 8px 3px rgba(102,204,255,0.9),
+        0 0 16px 6px rgba(0,102,204,0.7);
+    }
+
+    @keyframes sparkleFade {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.4);
+      }
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .message-box {
+      opacity: 0;
+      transition: opacity 1s ease;
+      font-size: 2rem;
+      margin: 20px;
+      padding: 50px 60px;
+      border-radius: 25px;
+      background: rgba(204, 153, 255, 0.9);
+      box-shadow:
+        0 0 20px 8px rgba(218, 112, 214, 0.7),
+        inset 0 0 30px 10px rgba(218, 112, 214, 0.5);
+      animation: fadeIn 1s forwards, pulse 3s infinite alternate;
+      max-width: 600px;
+      position: relative;
+      z-index: 10; /* Above sparkles */
+      box-sizing: border-box;
+      color: #fff;
+      text-shadow:
+        0 0 8px #fff,
+        0 0 15px #da70d6,
+        0 0 25px #da70d6,
+        0 0 40px #ba55d3,
+        0 0 50px #9932cc;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      user-select: none;
+      font-style: italic;
+      font-family: 'Georgia', serif;
+    }
+
+    /* Shimmer animation on text */
+    .message-box.shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .message-box.shimmer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      animation: shimmer 3.5s infinite;
+      pointer-events: none;
+      z-index: 20;
+    }
+    @keyframes shimmer {
+      0% {
+        left: -75%;
+      }
+      100% {
+        left: 125%;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.07);
+      }
+    }
+
+    .message-box-second {
+      display: none; /* Initially hidden */
+      opacity: 0;
+      transition: opacity 1s ease;
+      font-size: 2rem;
+      margin: 20px;
+      padding: 50px 60px;
+      border-radius: 25px;
+      background: rgba(0, 102, 204, 0.85);
+      box-shadow:
+        0 0 20px 8px rgba(102, 204, 255, 0.7),
+        inset 0 0 30px 10px rgba(0, 102, 204, 0.5);
+      max-width: 600px;
+      position: relative;
+      z-index: 10;
+      font-family: "Cairo", sans-serif;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      animation: fadeIn 1s forwards, pulse 3s infinite alternate;
+      color: #cce6ff;
+      text-shadow:
+        0 0 8px #cce6ff,
+        0 0 15px #66ccff,
+        0 0 25px #3399ff;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      user-select: none;
+      font-style: italic;
+      font-family: 'Georgia', serif;
+    }
+
+    .message-box-second.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Third message box */
+    .message-box-third {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+      font-size: 2rem;
+      margin: 20px;
+      padding: 50px 60px;
+      border-radius: 25px;
+      background: rgba(255, 182, 193, 0.85); /* soft pink */
+      box-shadow:
+        0 0 20px 8px rgba(255, 105, 180, 0.7),
+        inset 0 0 30px 10px rgba(255, 105, 180, 0.5);
+      max-width: 600px;
+      position: relative;
+      z-index: 10;
+      font-family: "Cairo", sans-serif;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      animation: fadeIn 1s forwards, pulse 3s infinite alternate;
+      color: #fff0f6;
+      text-shadow:
+        0 0 8px #ffb6c1,
+        0 0 15px #ff69b4,
+        0 0 25px #ff1493;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      user-select: none;
+      font-style: italic;
+      font-family: 'Georgia', serif;
+      text-align: center;
+    }
+
+    .message-box-third.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Buttons container */
+    .button-container {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      z-index: 11;
+      position: relative;
+    }
+
+    /* Buttons style */
+    .lovely-button {
+      background: linear-gradient(135deg, #da70d6, #ff69b4);
+      border: none;
+      border-radius: 30px;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      box-shadow:
+        0 0 10px #da70d6,
+        0 0 20px #ff69b4;
+      transition: all 0.3s ease;
+      user-select: none;
+      font-family: 'Georgia', serif;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    }
+    .lovely-button:hover {
+      box-shadow:
+        0 0 20px #da70d6,
+        0 0 40px #ff69b4;
+      transform: scale(1.05);
+    }
+    .lovely-button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    id="love-song"
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/NZGHXy1IAHM?autoplay=1&loop=1&playlist=NZGHXy1IAHM&controls=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="display: none"
+  ></iframe>
+
+  <div id="sparkles-container-1"></div>
+  <div id="sparkles-container-2"></div>
+
+  <div class="message-box shimmer" id="message1">
+    From late-night study sessions to a lifetime of shared dreams. Happy Birthday to the one I’ll grow old with. ♥️
+  </div>
+
+  <div class="message-box-second" id="message2">
+    كل سنة وأنت أجمل مارأت وسترى عيوني , كل سنة وأنت حبيبي الأول والأخير , كل سنة وانت أدهومي 💕
+  </div>
+
+  <div class="message-box-third" id="message3">
+    Before saying anything, I got a question: Who loves the other more?
+    <div class="button-container">
+      <button class="lovely-button" id="btn-ronayty">Ronayty</button>
+      <button class="lovely-button" id="btn-ronayty-bardo">Ronayty bardo hanhzr wla eh 🤭</button>
+    </div>
+  </div>
+
+  <script>
+    // Create sparkles randomly positioned and animated
+    function createSparkles(containerId, num, color) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = ""; // Clear previous sparkles
+      for (let i = 0; i < num; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle");
+        sparkle.style.background = color;
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        sparkle.style.width = sparkle.style.height = (Math.random() * 3 + 2) + "px";
+        sparkle.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        sparkle.style.animationDelay = (Math.random() * 5) + "s";
+        container.appendChild(sparkle);
+      }
+    }
+
+    // Show messages with fade in/out
+    function showMessage(id) {
+      const msg = document.getElementById(id);
+      msg.style.opacity = "1";
+      if (id === "message2" || id === "message3") {
+        msg.classList.add("show");
+      }
+      setTimeout(() => {
+        msg.style.opacity = "0";
+        if (id === "message2" || id === "message3") {
+          msg.classList.remove("show");
+        }
+      }, 15000);
+    }
+
+    // Show first message and sparkles
+    showMessage("message1");
+    createSparkles("sparkles-container-1", 40, "white");
+
+    // After 16 seconds, switch to second message and sparkles
+    setTimeout(() => {
+      document.body.style.background = "radial-gradient(circle at center, #000428, #004e92)";
+      document.getElementById("message1").style.display = "none";
+      document.getElementById("sparkles-container-1").style.display = "none";
+
+      const message2 = document.getElementById("message2");
+      message2.classList.add("show");
+      showMessage("message2");
+      const sparkles2 = document.getElementById("sparkles-container-2");
+      sparkles2.style.display = "block";
+      createSparkles("sparkles-container-2", 40, "#66ccff");
+    }, 16000);
+
+    // After 32 seconds, switch to third message and hide second sparkles
+    setTimeout(() => {
+      document.body.style.background = "radial-gradient(circle at center, #330029, #660033)";
+      document.getElementById("message2").style.display = "none";
+      document.getElementById("sparkles-container-2").style.display = "none";
+
+      const message3 = document.getElementById("message3");
+      message3.classList.add("show");
+      showMessage("message3");
+    }, 32000);
+
+    // Optional: Add button click handlers
+    document.getElementById("btn-ronayty").addEventListener("click", () => {
+      alert("Ronaytak won't stop loving you ya alb ronaytak 💕");
+    });
+    document.getElementById("btn-ronayty-bardo").addEventListener("click", () => {
+      alert("HWA DH AL KALAMMMMM💪");
+    });
+     setTimeout(() => {
+                        window.location.href = "third.html"; // or whatever you named the second file
+                    }, 47000);
+  </script>
+</body>
+</html>

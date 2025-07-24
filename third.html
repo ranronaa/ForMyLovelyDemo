@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Letter</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #D8BFD8, #F5F5DC); /* Warm dusty pink to beige gradient */
+      font-family: 'Dancing Script', cursive; /* Elegant font for title */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      overflow: hidden;
+      position: relative; /* For positioning hearts */
+    }
+
+    .letter {
+      background: #FDF6F0; /* Warm white background for the letter */
+      border-radius: 10px;
+      padding: 40px;
+      max-width: 800px;
+      max-height: 80vh; /* Limit height for scrolling */
+      overflow-y: auto; /* Allow scrolling if content overflows */
+      position: relative;
+      z-index: 1;
+      opacity: 0; /* Start hidden for animation */
+      animation: fadeIn 1s forwards; /* Fade-in effect */
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #000000; /* Black color for the title */
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 20px;
+      margin: 10px 0;
+      opacity: 0; /* Start hidden for animation */
+      animation: write 0.5s forwards; /* Writing effect */
+      color: #000000; /* Black text color */
+      font-family: 'Patrick Hand', cursive; /* Simpler handwritten font for English text */
+    }
+
+    .arabic {
+      font-family: 'Amiri', serif; /* Handwritten font for Arabic text */
+      font-size: 20px; /* Same size for consistency */
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes write {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+
+    /* Falling hearts and kisses */
+    .falling {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall 5s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* Randomize positions and animations for hearts and kisses */
+    .heart {
+      color: #B22222; /* Muted red */
+    }
+
+    .kiss {
+      color: #FFB6C1; /* Soft pink */
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Patrick+Hand&family=Amiri&display=swap" rel="stylesheet"> <!-- Handwritten fonts -->
+</head>
+<body>
+  <!-- Autoplaying Hidden Love Song -->
+  <iframe
+    id="love-song"
+    src="https://www.youtube.com/embed/NZGHXy1IAHM?autoplay=1&loop=1&playlist=NZGHXy1IAHM&controls=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="display: none"
+  ></iframe>
+
+  <div class="letter" id="letter">
+    <h1>Where My Love Lives – Inside This Letter♥️</h1>
+    <div class="message-box" id="message-box">
+      <p id="line1">Before you even read this, just know — every word is a piece of my heart, written only for you.</p>
+      <p id="line2"><strong>It’s your first birthday with me —<br>
+      but somehow…<br>
+      it feels like I’ve loved you through a thousand Julys.</strong></p>
+      <p id="line3"><strong>You walked in — and nothing’s been the same.<br>
+      My days are softer,<br>
+      my heart louder,<br>
+      my world suddenly full.</strong></p>
+      <p id="line4"><strong>I don’t know how you became my favorite person so quickly,<br>
+      but I thank the universe for every second that led me to you.</strong></p>
+      <p id="line5"><strong>This day isn’t just yours — it’s ours now.<br>
+      The beginning of a forever I never saw coming,<br>
+      but now can’t live without.</strong></p>
+      <p id="line6"><strong>Happy first birthday, Adhomi and my future husband♥️ —<br>
+      the first of many,<br>
+      the first of always.💕</strong></p>
+      <p id="line7"><strong>It’s strange… how you felt like home,<br>
+      even before I knew your favorite color or who you are.</strong></p>
+      <p id="line8" class="arabic">اول مرة شوفتك، كنت مستغربة ازاي في حد جميل كده؟<br>
+      ازاي في حد فيه كل الحاجات اللي أي حد يتمناها؟<br>
+      مكانش في سؤال في دماغي غير: هو إزاي جميل كده؟</p>
+      <p id="line9" class="arabic">بس مع كل مرة كنت بشوفك فيها<br>
+      كنت بتأكد إنك مش بس جميل<br>
+      أنت مميز، ومختلف , وفعلا لو كنت حتى دورت ،<br>
+       عمري ما كنت أتخيل ألاقي بيها حد زيك شبهي وبيفهمني</p>
+      <p id="line10" class="arabic">مميز في شكلك، في كلامك، في ذكاءك , في طريقتك , في شكلك لما بتهنج , في شكلك لما بتكون متوتر وناسي الكلام<br>
+      مميز في عيونك<br>
+      العيون اللي من أول لحظة وقعت فيها<br>
+      وكل مرة بشوفهم بدوب وبنسى كل حاجة</p>
+      <p id="line11" class="arabic">ممكن احنا مش بقالنا كتير مع بعض<br>
+      بس أنت فعلاً بقيت كل اللي بتمناه<br>
+      بقيت اللي بحتاجه<br>
+      والبدعي يفضل جمبي العمر كله.</p>
+      <p id="line12"><strong>It’s like my heart remembered you —<br>
+      before my mind could explain it.</strong></p>
+      <p id="line13" class="arabic">وجودك خلاني أبقى نسخة أحسن من نفسي<br>
+      ضحكتك بتهون عليّ كل حاجة<br>
+      نظرتك بتطمن قلبي،<br>
+      وكلامك بيرجعلي روحي</p>
+      <p id="line14" class="arabic">إنت مش بس حبيبي<br>
+      إنت راحتي، وسبب سعادتي</p>
+      <p id="line15"><strong>You don’t just make me feel loved…<br>
+      You make me feel understood.</strong></p>
+      <p id="line16" class="arabic">أنا عارفة إننا لسه في أول الطريق<br>
+      والطريق طويل<br>
+      بس كل خطوة فيه متأكدة إننا هنكون سوا<br>
+      وكل خطوة هقولك فيها: بحبك، يا أشطر حد شافته عيوني</p>
+      <p id="line17" class="arabic">أنا متأكدة إنك نصي التاني<br>
+      وروحي المش هقدر أعيش من غيرها<br>
+      ولما بنبعد حتى ساعة<br>
+      بحس إن قلبي مش موجود<br>
+      وإن في حاجة ناقصة جدًا<br>
+      وبسأل نفسي: إزاي كنت عايشة من غير ديمو في حياتي؟</p>
+      <p id="line18" class="arabic">انهاردة بالنسبالي مش يوم عادي،<br>
+      ده أهم يوم في السنة،<br>
+      اليوم اللي اتولد فيه الإنسان اللي غير حياتي،<br>
+      وحسسني يعني إيه حب بجد</p>
+      <p id="line19" class="arabic">بقالي شوية بجهز في كل كلمة<br>
+      وكنت بتمنى نكون سوا علشان أقولك كل ده وأنا باصة في عيونك<br>
+      بس أوعدك… أول ما أشوفك<br>
+     هقولهالك وأنا باصة في عيونك وبقولك بعدها على طول أنا بحبك وهفضل رونايتك لأخر نفس ولأخر العمر</p>
+      <p id="line20" class="arabic">كل سنة وأنت حبيبي<br>
+      كل سنة وأنت أجمل حد شافته وهتشوفه عيوني<br>
+      كل سنة وأنت أول حد عايزاه جنب قلبي لو خفت<br>
+      وأول اسم بخطر على بالي لما يحصل أي حاجة</p>
+      <p id="line21" class="arabic">كل سنة وأنت روحي<br>
+      وإنت حياتي،<br>
+      وإنت قلبي<br>
+      وإنت كل حاجة بالنسبالي</p>
+      <p id="line22" class="arabic">أنا لو كنت فكرت،<br>
+      ما كنتش أتخيل في يوم إني هقع في حب حد بربع الطريقة الوقعت بيها في حبك<br>
+      بس الحقيقة<br>
+      أنا وقعت<br>
+      وكل يوم بقع أكتر<br>
+      وبعشق أدهومي بكل تفاصيله.</p>
+      <p id="line23" class="arabic">انت مش متخيل بحبك قد إيه…<br>
+      أنا بموت في كل تفصيلة فيك<br>
+      كل نظرة، كل كلمة، كل حاجة تخصك.</p>
+      <p id="line24" class="arabic">ولو ليا أمنية واحدة،<br>
+      فهي إننا نكمل سوا…<br>
+      طول العمر.</p>
+      <p id="line25"><strong>عمري ما هبطل أقولك "بحبك"...<br>
+      علشان دي الكلمة اللي أول ما قولتهالي،<br>
+      اتأكدت إن قلبي ما بقاش ليا،<br>
+      بقى ليك<br>
+      مع حد عارف قيمته<br>
+      وبيحبني بصدق،<br>
+      وخلاني مش عايزة حاجة غير أني أكون معاه وأبسطه بأي وكل شكل ممكن</strong></p>
+      <p id="line26" class="arabic">"بحبك" بالنسبالي ليها طعم مختلف<br>
+     علشان دي أول مرة سمعتها كنت متأكدة ان هي طالعة من قلبك<br>
+      ولإنها خارجة من قلبي ليك إنت وبس.</p>
+      <p id="line27" class="arabic">أنا قاصدة كل كلمة وكل حرف كاتباه<br>
+      وقاصدة أقولك:<br>
+      إني بحبك<br>
+      وهفضل أحبك مهما حصل ومهما هيحصل،<br>
+    وهفضل حبيبتك<br>
+      وهفضل موهومة بأدهومي… وبشطارته… وبحنانه… وبكل حاجة فيه.</p>
+      <p id="line28"><strong>I’m not just saying “I love you.”<br>
+      I’m saying “I’ve always loved you.”<br>
+      In every lifetime,<br>
+      In every universe,<br>
+      It’s always been you.</strong></p>
+      <p id="line29">💕 <strong>كل سنة وأنت طيب يا حبيبي،<br>
+      كل سنة وأنت أجمل، وأحن، وأطيب حد في الدنيا،<br>
+      كل سنة وأنت النور اللي منورلي حياتي،<br>
+      وكل حاجة حلوة في أيامي،<br>
+      كل سنة وأنت أدهومي… كل سنة وأنت قلبي.</strong></p>
+      <p id="line30"><strong>ويارب دي تبقى بداية عمر جديد<br>
+      بس المرة دي<br>
+       هنكون سوا<br>
+     في كل خطوة هتلاقيني معاك وبقولك في عيونك "بحبك ياقلب رونايتك".</strong> 💗</p>
+    </div>
+  </div>
+
+  <!-- Falling hearts and kisses -->
+  <script>
+    const createFallingElement = (symbol, className) => {
+      const element = document.createElement('div');
+      element.className = `falling ${className}`;
+      element.innerHTML = symbol;
+      element.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+      element.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Random fall duration
+      document.body.appendChild(element);
+
+      // Remove the element after it falls
+      setTimeout(() => {
+        element.remove();
+      }, 5000);
+    };
+
+    // Create falling hearts and kisses
+    setInterval(() => {
+      createFallingElement('❤️', 'heart');
+      createFallingElement('💋', 'kiss');
+        createFallingElement('🩷', 'heart');
+	createFallingElement('💕', 'heart');
+    }, 500); // Create a new element every 500ms
+
+    // Function to reveal text line by line
+    const lines = document.querySelectorAll('p');
+    lines.forEach((line, index) => {
+      setTimeout(() => {
+        line.style.opacity = 1; // Fade in the line
+        line.style.animation = 'write 0.5s forwards'; // Apply writing effect
+      }, index * 1000); // Delay each line by 1 second
+    });
+
+    // Show the letter after a short delay
+    setTimeout(() => {
+      document.getElementById('letter').style.opacity = 1;
+    }, 500);
+  </script>
+</body>
+</html>
